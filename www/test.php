@@ -37,7 +37,7 @@
 
 		# check extensions...
 		if(! in_array($_FILES['pic']['type'], $ext)){
-			$errors[] = "invalid file type"
+			$errors[] = "invalid file type";
 		}
 
 		if(empty($errors)){
