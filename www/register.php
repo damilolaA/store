@@ -13,36 +13,36 @@ if(array_key_exists('register', $_POST)){
 	# validate first name
 
 	if(empty($_POST['fname'])){
-		$errors[] = "Please enter first name";
+		$errors['fname'] = "Please enter first name";
 	}
 
 	if(empty($_POST['lname'])){
-		$errors[] = "Please enter last name";
+		$errors['lname'] = "Please enter last name";
 	}
 
 	if(empty($_POST['email'])){
-		$errors[] = "Please enter email address";
+		$errors['email'] = "Please enter email address";
 	}
 
 	if(empty($_POST['password'])){
-		$errors[] = "Please enter password";
+		$errors['password'] = "Please enter password";
 	}
 
 	if(empty($_POST['pword'])){
-		$errors[] = "Please confirm password";
+		$errors['pword'] = "Please confirm password";
 	}
 
 	if($_POST['pword'] != $_POST['password']){
-		$errors[] = "Please enter correct password";
+		$errors['pword'] = "Please enter correct password";
 	}
-
 	
 	if(empty($errors)){
 		// do database stuff
-
 	}
 	
 }
+
+
 
 ?>
 <div class="wrapper">
@@ -50,6 +50,10 @@ if(array_key_exists('register', $_POST)){
 		<hr>
 		<form id="register"  action ="register.php" method ="POST">
 			<div>
+				<?php
+					if(isset($errors['fname'])) {echo '<span class="err">'. $errors['fname']. '</span>';}
+
+				?>
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
 			</div>
