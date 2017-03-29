@@ -16,12 +16,23 @@ if(array_key_exists('register', $_POST)){
 		$errors[] = "Please enter first name";
 	}
 
+
+	if(empty($_POST['password'])){
+		$errors[] = "Please enter password";
+	}
+
+	if(empty($_POST['pword']) || ($_POST['pword'] != $_POST['password'])){
+		$errors[] = "Empty or incorrect password";
+	}
+
+	
+
 	if(empty($errors)){
 		// do database stuff
 
 	}else {
 		foreach($errors as $err){
-			echo $err;
+			echo $err.'</br>';
 		}
 	}
 }
