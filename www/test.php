@@ -1,6 +1,6 @@
 <?php
 
-	define('DBNAME', 'online_store');
+/*	define('DBNAME', 'online_store');
 	define('DBUSER', 'root');
 	define('DBPASS', 'damilolo');
 
@@ -14,6 +14,14 @@
 
 	} catch(PDOException $e){
 		echo $e->getMessage();
-	}
+	}    */
 
 ?>
+
+<form id="register" method="POST" enctype="multipart/form-data">
+	<p>Please upload a file</p>
+
+	<input type="file" name="pic">
+
+	<input type="submit" name="save">
+</form>
