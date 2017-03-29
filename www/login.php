@@ -1,4 +1,6 @@
 <?php
+		
+	$page_title ="Login";	
 
 	include 'includes/header.php';
 
