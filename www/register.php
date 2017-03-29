@@ -16,17 +16,27 @@ if(array_key_exists('register', $_POST)){
 		$errors[] = "Please enter first name";
 	}
 
+	if(empty($_POST['lname'])){
+		$errors[] = "Please enter last name";
+	}
+
+	if(empty($_POST['email'])){
+		$errors[] = "Please enter email address";
+	}
 
 	if(empty($_POST['password'])){
 		$errors[] = "Please enter password";
 	}
 
-	if(empty($_POST['pword']) || ($_POST['pword'] != $_POST['password'])){
-		$errors[] = "Empty or incorrect password";
+	if(empty($_POST['pword'])){
+		$errors[] = "Please confirm password";
+	}
+
+	if($_POST['pword'] != $_POST['password']){
+		$errors[] = "Please enter correct password";
 	}
 
 	
-
 	if(empty($errors)){
 		// do database stuff
 
