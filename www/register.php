@@ -39,3 +39,10 @@ include 'includes/header.php';
 
 		<h4 class="jumpto">Have an account? <a href="login.php">login</a></h4>
 	</div>
+
+</<?php 
+
+# include footer...
+include 'includes/footer.php';
+
+ ?>
