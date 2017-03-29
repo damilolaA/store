@@ -1,10 +1,21 @@
 <?php
+	
+# title
+$page_title = "Register";	
 
 # include header
 include 'includes/header.php';
 
+if(array_key_exists('register', $_POST)){
+	# cache errors
+	$errors = [];
 
+	# validate first name
 
+	if(empty($_POST['fname'])){
+		$errors[] = "Please enter first name";
+	}
+}
 
 ?>
 <div class="wrapper">
