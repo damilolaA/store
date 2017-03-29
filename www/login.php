@@ -21,3 +21,8 @@
 
 		<h4 class="jumpto">Don't have an account? <a href="register.php">register</a></h4>
 	</div>
+
+<?php
+
+include 'includes/footer.php';
+?>
