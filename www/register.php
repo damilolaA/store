@@ -15,6 +15,15 @@ if(array_key_exists('register', $_POST)){
 	if(empty($_POST['fname'])){
 		$errors[] = "Please enter first name";
 	}
+
+	if(empty($errors)){
+		// do database stuff
+
+	}else {
+		foreach($errors as $err){
+			echo $err;
+		}
+	}
 }
 
 ?>
