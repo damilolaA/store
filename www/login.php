@@ -1,5 +1,8 @@
+<?php
 
+	include 'includes/header.php';
 
+?>
 <div class="wrapper">
 		<h1 id="register-label">Admin Login</h1>
 		<hr>
