@@ -6,7 +6,7 @@
 	$hash = password_hash($input['password'], PASSWORD_BCRYPT);
 
 	#insert data
-	$stmt = $dbconn->prepare("INSERT INTO admin(firstname, lastname, email, hash) 
+	$stmt = $dbconn->prepare("INSERT INTO admins(fname, lname, email, hash) 
 							VALUES(:fn, :ln, :e, :h)");
 
 
