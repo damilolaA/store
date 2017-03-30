@@ -6,6 +6,9 @@ $page_title = "Register";
 #load db connection
 include 'includes/db.php';
 
+#load functions
+include 'include/functions.php';
+
 # include header
 include 'includes/header.php';
 
