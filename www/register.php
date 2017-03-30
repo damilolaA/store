@@ -3,6 +3,9 @@
 # title
 $page_title = "Register";	
 
+#load db connection
+include 'includes/db.php';
+
 # include header
 include 'includes/header.php';
 
@@ -28,16 +31,16 @@ if(array_key_exists('register', $_POST)){
 		$errors['password'] = "Please enter password";
 	}
 
-	if(empty($_POST['pword'])){
-		$errors['pword'] = "Please confirm password";
-	}
-
 	if($_POST['pword'] != $_POST['password']){
 		$errors['pword'] = "Please enter correct password";
 	}
 	
 	if(empty($errors)){
 		// do database stuff
+
+		# eliminate unwanted spaces from values in the $_POST array
+		$clean = array_map('trim', $_POST);
+
 	}
 	
 }
