@@ -41,6 +41,23 @@ if(array_key_exists('register', $_POST)){
 		# eliminate unwanted spaces from values in the $_POST array
 		$clean = array_map('trim', $_POST);
 
+		#hash the password
+		$hash = password_hash($clean['password'], PASSWORD_BCRYPT);
+
+		#insert data
+		$stmt = $conn->prepare("INSERT INTO admins(fname, lname, email, hash)
+										VALUES(:fn, :ln, :e, :h)");
+
+		#bind params...
+		$data = [
+			':fn' => $clean['fname'],
+			':ln' => $clean['lname'],
+			':e'  => $clean['email'],
+			':h'  => $clean['password']
+		];
+
+		$stmt->execute($data);
+
 	}
 	
 }
