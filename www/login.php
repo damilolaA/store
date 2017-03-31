@@ -2,7 +2,31 @@
 		
 	$page_title ="Login";	
 
+	include 'includes/db.php';
+
+	include 'includes/functions.php';
+
 	include 'includes/header.php';
+
+	if(array_key_exists('register', $_POST)){
+		$errors = [];
+
+		if(empty($_POST['email'])) {
+			$errors['email'] = "Please enter your email";
+		}
+
+		if(empty($_POST['password'])) {
+			$errors['password'] = "Please enter your password";
+		}
+
+		if(empty($errors)) {
+
+			#clean unwanted values in the $_POST array
+			$clean = array_map('trim', $_POST);
+
+			adminLogin($conn, $clean);
+		}
+	}
 
 ?>
 <div class="wrapper">
