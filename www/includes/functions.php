@@ -41,4 +41,19 @@
 		return $result;
 	}
 
+
+	function displayErrors($open, $name){
+
+		$result = "";
+
+		if(isset($open[$name])) {
+
+			$result = '<span class="err">'.$open[$name].'</span>';
+
+		}
+			return $result;
+	 
+	 
+	 	}
+
 ?>
