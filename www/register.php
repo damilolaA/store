@@ -12,10 +12,10 @@ include 'includes/functions.php';
 # include header
 include 'includes/header.php';
 
-if(array_key_exists('register', $_POST)){
-	# cache errors
+# cache errors
 	$errors = [];
-
+if(array_key_exists('register', $_POST)){
+	
 	# validate first name
 
 	if(empty($_POST['fname'])){
@@ -58,21 +58,26 @@ if(array_key_exists('register', $_POST)){
 
 ?>
 <div class="wrapper">
+			
 		<h1 id="register-label">Admin Register</h1>
 		<hr>
 		<form id="register"  action ="register.php" method ="POST">
+
 			<div>
 				<?php
-					if(isset($errors['fname'])) {echo '<span class="err">'. $errors['fname']. '</span>';}
-
+					
+					$reveal =displayErrors($errors,'fname');
+					echo $reveal;
 				?>
+
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
 			</div>
 
 			<div>
 				<?php
-					if(isset($errors['lname'])) {echo '<span class="err">'. $errors['lname']. '</span>';}
+					$view = displayErrors($errors,'lname');
+					echo $view;				
 				?>
 				<label>last name:</label>	
 				<input type="text" name="lname" placeholder="last name">
@@ -80,8 +85,9 @@ if(array_key_exists('register', $_POST)){
 
 			<div>
 				<?php
-					if(isset($errors['email'])) {echo '<span class="err">'. $errors['email']. '</span>';}
-
+					$show = displayErrors($errors, 'email');
+					echo $show;
+				
 				?>
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
@@ -89,7 +95,10 @@ if(array_key_exists('register', $_POST)){
 
 			<div>
 				<?php
-					if(isset($errors['password'])) {echo '<span class="err">'. $errors['password']. '</span>';}
+					
+					$new = displayErrors($errors, 'password');
+					echo $new;
+				
 				?>
 				<label>password:</label>
 				<input type="password" name="password" placeholder="password">
@@ -97,7 +106,9 @@ if(array_key_exists('register', $_POST)){
  
 			<div>
 				<?php
-					if(isset($errors['pword'])) {echo '<span class="err">'. $errors['pword']. '</span>';}
+					$what = displayErrors($errors, 'pword');
+					echo $what;
+				
 				?>
 				<label>confirm password:</label>	
 				<input type="password" name="pword" placeholder="password">
@@ -109,7 +120,7 @@ if(array_key_exists('register', $_POST)){
 		<h4 class="jumpto">Have an account? <a href="login.php">login</a></h4>
 	</div>
 
-</<?php 
+<?php 
 
 # include footer...
 include 'includes/footer.php';
