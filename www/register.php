@@ -49,7 +49,7 @@ if(array_key_exists('register', $_POST)){
 		$clean = array_map('trim', $_POST);
 
 		#register admin
-		doAdminRegister($conn, $clean);
+		adminRegister($conn, $clean);
 	}
 	
 }
