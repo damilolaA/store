@@ -1,5 +1,7 @@
 <?php
-		
+	
+	session_start();
+
 	$page_title ="Login";	
 
 	include 'includes/db.php';
