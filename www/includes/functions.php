@@ -85,6 +85,36 @@
 	 
 	 }
 
+	 	function fileUpload($right, $left, $center){
 
+	 		define('MAX_FILE_SIZE', '2097152');
+
+	 		$ext = ['image/jpeg', 'image/jpg', 'image/png'];
+
+	 		# check file size
+	 		if($right[$center]['size'] > MAX_FILE_SIZE) {
+
+	 			$left[$center] = "file size exceeds maximum. maximum: " .MAX_FILE_SIZE;
+	 		}
+
+	 		# check extensions
+	 		if(!in_array($right[$center]['type'], $ext)){
+	 			$left[$center] = "invalid file type";
+	 		}
+
+	 		# generate random number to append to name...
+	 		$rnd = rand(0000000000, 9999999999);
+
+	 		#strip file name of white spaces...
+	 		$strip = str_replace(" ", "_", $right[$center]['name']);
+
+	 		$filename = $rnd.$strip;
+	 		$destination = 'uploads/'.$filename;
+
+	 		if(! move_uploaded_file($right[$center]['tmp_name'], $destination)){
+
+	 			$left[$center] = "file upload failed";
+	 		}
+	 	}
 
 ?>
