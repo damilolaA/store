@@ -49,7 +49,7 @@ if(array_key_exists('register', $_POST)){
 		$clean = array_map('trim', $_POST);
 
 		#register admin
-		adminRegister($conn, $clean);
+		doAdminRegister($conn, $clean);
 	}
 	
 }
@@ -107,7 +107,7 @@ if(array_key_exists('register', $_POST)){
 			<div>
 				<?php
 					$what = displayErrors($errors, 'pword');
-					echo $what;
+					echo $what
 				
 				?>
 				<label>confirm password:</label>	
