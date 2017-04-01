@@ -1,5 +1,6 @@
 <?php
-
+	
+	include 'includes/functions.php';
 /*	define('DBNAME', 'online_store');
 	define('DBUSER', 'root');
 	define('DBPASS', 'damilolo');
@@ -17,41 +18,42 @@
 	}    */
 
 	# max file size
-	define('MAX_FILE_SIZE', '2097152');
+#	define('MAX_FILE_SIZE', '2097152');
 
 	# allowed extensions...
-	$ext = ['image/jpg', 'image/jpeg', 'image/png'];
-
-	if(array_key_exists('save', $_POST)){
+#	$ext = ['image/jpg', 'image/jpeg', 'image/png'];
 		$errors = [];
 
+	if(array_key_exists('save', $_POST)){
+		
+		fileUpload($_FILES, $errors, 'pic');
 		#be sure a file was selected...
 		if(empty($_FILES['pic']['name'])){
 			$errors[] = "Please choose a file";
 		}
 
 		# check file size...
-		if($_FILES['pic']['size'] > MAX_FILE_SIZE){
-			$errors[] = "file size exceeds maximum. maximum: ". MAX_FILE_SIZE;
-		}
+#		if($_FILES['pic']['size'] > MAX_FILE_SIZE){
+#			$errors[] = "file size exceeds maximum. maximum: ". MAX_FILE_SIZE;
+#		}
 
 		# check extensions...
-		if(! in_array($_FILES['pic']['type'], $ext)){
-			$errors[] = "invalid file type";
-		}
+#		if(! in_array($_FILES['pic']['type'], $ext)){
+#			$errors[] = "invalid file type";
+#		}
 
 		# generate random number to append...
-		$rnd = rand(0000000000, 9999999999);
+#		$rnd = rand(0000000000, 9999999999);
 
 		# strip filename for spaces...
-		$strip_name = str_replace(" ", "_", $_FILES['pic']['name']);
+#		$strip_name = str_replace(" ", "_", $_FILES['pic']['name']);
 
-		$filename = $rnd.$strip_name;
-		$destination = 'uploads/'.$filename;
+#		$filename = $rnd.$strip_name;
+#		$destination = 'uploads/'.$filename;
 
-		if(!move_uploaded_file($_FILES['pic']['tmp_name'], $destination)){
-			$errors[] = "files uploads failed";
-		}
+#		if(!move_uploaded_file($_FILES['pic']['tmp_name'], $destination)){
+#			$errors[] = "files uploads failed";
+#		}
 
 		if(empty($errors)){
 			echo "done";
