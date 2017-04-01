@@ -22,9 +22,11 @@
 
 	# allowed extensions...
 #	$ext = ['image/jpg', 'image/jpeg', 'image/png'];
+		
+	if(array_key_exists('save', $_POST)){
+		
 		$errors = [];
 
-	if(array_key_exists('save', $_POST)){
 		
 		fileUpload($_FILES, $errors, 'pic');
 		#be sure a file was selected...
