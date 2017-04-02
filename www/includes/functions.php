@@ -127,4 +127,18 @@
 	 		$stmt->execute();
 
 	 	}
+
+
+	/* 	function viewCategory($dummy){
+
+	 		$result = "";
+
+	 		while($select = $dummy->fetch(PDO::FETCH_ASSOC)){
+
+	 			$result .= '<tr><td>'.$select['category_name'].'</td>';
+	 			$result .= '<td>'.$select['category_id'].'</td></tr>';
+	 		}
+
+	 		return $result;
+	 	}    */
 ?>
