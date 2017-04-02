@@ -4,25 +4,19 @@
 
 	include "includes/functions.php";
 
+	$error = [];
+
 	if (array_key_exists('submit', $_POST)){
 
-		$error = [];
-
 		if(empty($_POST['cat'])){
-			$error[] = "Please enter a category name";
+			$error['cat'] = "Please enter a category name";
 		}
 
 		if(empty($error)){
 
 			$clean = array_map('trim', $_POST);
 
-			$stmt = $conn->prepare("INSERT INTO categories (category_name) 
-											VALUES(:c)");
-
-			#bind param
-			$stmt->bindParam(':c', $clean['cat']);
-			$stmt->execute();		
-
+			addCategory($conn, $clean);
 
 			
 		}
@@ -59,6 +53,10 @@
 		<form id="register" action="category.php" method="POST" >
 
 		<div>
+			<?php
+				$show = displayErrors($error, 'cat');
+				echo $show;
+			?>
 			<label>Category:</label>
 			<input type="text" name="cat" placeholder="Category">
 		</div>
