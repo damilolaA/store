@@ -88,7 +88,7 @@
 						<td><?php echo $select['category_name'] ?></td>
 						<td><?php echo $select['category_id']?></td>	
 
-						<td><a href="#">edit</a></td>
+						<td><a href="category.php">edit</a></td>
 						<td><a href="#">delete</a></td>
 
 					</tr>   
