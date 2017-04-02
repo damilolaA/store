@@ -117,4 +117,14 @@
 	 		}
 	 	}
 
+
+	 	function addCategory($dbconn, $fix){
+
+	 		$stmt = $dbconn->prepare("INSERT INTO categories(category_name)
+	 										VALUES(:c)");
+	 		# bind param
+	 		$stmt->bindParam(':c', $fix['cat']);
+	 		$stmt->execute();
+
+	 	}
 ?>
