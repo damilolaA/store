@@ -23,7 +23,11 @@
 	}
 
 
+	$stmt = $conn->prepare("SELECT * FROM categories");
 
+	$stmt->execute();
+
+	
 ?>
 
 <!DOCTYPE html>
@@ -64,25 +68,31 @@
 			<input type="submit" name="submit" value="Register">
 		</form>
 
+		</br>
+		<hr>
 		<div id="stream">
 			<table id="tab">
 				<thead>
 					<tr>
-						<th>post title</th>
-						<th>post author</th>
-						<th>date created</th>
-						<th>edit</th>
-						<th>delete</th>
+						<th>Category Name</th>
+						<th>Category ID</th>
+						<th>Edit Category</th>
+						<th>Delete Category</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>the knowledge gap</td>
-						<td>maja</td>
-						<td>January, 10</td>
+					
+				<?php	while($select = $stmt->fetch(PDO::FETCH_ASSOC)) {?>
+					
+						<td><?php echo $select['category_name'] ?></td>
+						<td><?php echo $select['category_id']?></td>	
+
 						<td><a href="#">edit</a></td>
 						<td><a href="#">delete</a></td>
-					</tr>
+
+					</tr>   
+					<?php } ?>
           		</tbody>
 			</table>
 		</div>
