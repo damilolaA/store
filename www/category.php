@@ -20,10 +20,6 @@
 			#bind param
 			$stmt->bindParam(':c', $clean['cat']);
 			$stmt->execute();		
-		}else {
-			foreach($error as $err){
-				echo $err;
-			}
 		}
 	}
 
