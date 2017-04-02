@@ -2,6 +2,8 @@
 
 	include "includes/db.php";
 
+	include "includes/functions.php";
+
 	if (array_key_exists('submit', $_POST)){
 
 		$error = [];
@@ -20,6 +22,9 @@
 			#bind param
 			$stmt->bindParam(':c', $clean['cat']);
 			$stmt->execute();		
+
+
+			
 		}
 	}
 
