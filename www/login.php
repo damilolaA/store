@@ -36,6 +36,10 @@
 		<hr>
 		<form id="register"  action ="login.php" method ="POST">
 			<div>
+				<?php
+					$reveal = displayErrors($conn, 'email');
+					echo $reveal;
+				?>
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
 			</div>
