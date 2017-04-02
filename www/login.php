@@ -10,9 +10,11 @@
 
 	include 'includes/header.php';
 
-	if(array_key_exists('register', $_POST)){
-		$errors = [];
+	$errors = [];
 
+
+	if(array_key_exists('register', $_POST)){
+		
 		if(empty($_POST['email'])) {
 			$errors['email'] = "Please enter your email";
 		}
@@ -37,7 +39,7 @@
 		<form id="register"  action ="login.php" method ="POST">
 			<div>
 				<?php
-					$reveal = displayErrors($conn, 'email');
+					$reveal = displayErrors($errors, 'email');
 					echo $reveal;
 				?>
 				<label>email:</label>
