@@ -131,8 +131,8 @@
 
 	 	function addProduct($dbconn, $add){
 
-	 		$stmt = $dbconn->prepare("INSERT INTO books(title,author, category_id, price, publication_date, isbn)
-																	VALUES(:t, :a, :c, :p, :pd, :i)");
+	 		$stmt = $dbconn->prepare("INSERT INTO books(title,author, category_id, price, publication_date, isbn, book_image)
+																	VALUES(:t, :a, :c, :p, :pd, :i, :d)");
 
 	 		$data = [
 	 					':t' => $add['title'],
@@ -140,7 +140,8 @@
 	 					':c' => $add['cat'],
 	 					':p' => $add['price'],
 	 					':pd' => $add['date'],
-	 					':i' => $add['isbn'] 
+	 					':i' => $add['isbn'], 
+	 					':d' => $add['pic']
 	 					];
 
 	 		$stmt->execute($data);			
