@@ -14,23 +14,23 @@
 		}
 
 		if(empty($_POST['author'])) {
-			$errors[] = "Please enter book author";
+			$errors['author'] = "Please enter book author";
 		}
 
 		if(empty($_POST['cat'])) {
-			$errors[] = "Please enter category id";
+			$errors['cat'] = "Please enter category id";
 		}
 
 		if(empty($_POST['price'])) {
-			$errors[] = "Please enter book price";
+			$errors['price'] = "Please enter book price";
 		}
 
 		if(empty($_POST['date'])) {
-			$errors[] = "Please enter publication date";
+			$errors['date'] = "Please enter publication date";
 		}
 
 		if(empty($_POST['isbn'])) {
-			$errors[] = "Please enter book isbn number";
+			$errors['isbn'] = "Please enter book isbn number";
 		}
 
 
@@ -68,30 +68,55 @@
 			</div>
 
 			<div>
+				<?php
+					$reveal = displayErrors($errors, 'author');
+					echo $reveal;
+				?>
 				<label>book author:</label>	
 				<input type="text" name="author" placeholder="book author">
 			</div>
 
 			<div>
+				<?php
+					$return = displayErrors($errors, 'cat');
+					echo $return;
+				?>
 				<label>category id:</label>	
 				<input type="text" name="cat" placeholder="category id">
 			</div>
 
 			<div>
+				<?php
+					$bring = displayErrors($errors, 'price');
+					echo $bring;
+				?>
 				<label>price:</label>
 				<input type="text" name="price" placeholder="price">
 			</div>
+
 			<div>
+				<?php
+					$output = displayErrors($errors, 'date');
+					echo $output;
+				?>
 				<label>publication date:</label>
 				<input type="text" name="date" placeholder="publication date">
 			</div>
  
 			<div>
+				<?php
+					$bring = displayErrors($errors, 'isbn');
+					echo $bring;
+				?>
 				<label>isbn:</label>	
 				<input type="text" name="isbn" placeholder="isbn">
 			</div>
 
 			<div>
+				<?php
+					$call = displayErrors($errors, 'pic');
+					echo $call;
+				?>
 					<label>product image</label>
 					<input type="file" name="pic">
 					</div>
