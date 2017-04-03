@@ -3,6 +3,8 @@
 
 	include 'includes/db.php';
 
+	include 'includes/functions.php';
+
 
 
 	$stmt = $conn->prepare("SELECT * FROM books");
@@ -26,7 +28,7 @@
 				<ul class="clearfix">
 					<li><a href="category.php" class="selected">Add Category</a></li>
 					<li><a href="products.php">Add Products</a></li>
-					<li><a href="viewcat.php">View Products</a></li>
+					<li><a href="viewprod.php">View Products</a></li>
 					<li><a href="#">logout</a></li>
 				</ul>
 			</nav>
@@ -34,7 +36,7 @@
 	</section>
 	<div class="wrapper">
 		<div id="stream">
-		<h1 id="register-label">Add Category</h1>
+		<h1 id="register-label">View Products</h1>
 			<table id="tab">
 				<thead>
 					<tr>
@@ -49,14 +51,18 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {?>
+						<td><?php echo $row['title'] ?></td>
+						<td><?php echo $row['author'] ?></td>
+						<td><?php echo $row['category_id']?></td>
+						<td><?php echo $row['price']?></td>
+						<td><?php echo $row['publication_date']?></td>
+						<td><?php echo $row['ISBN']?></td>
+						<td><?php echo $row['book_image']?></td>
 						<td><a href="#">edit</a></td>
 						<td><a href="#">delete</a></td>
 					</tr>
+					<?php }?>
           		</tbody>
 			</table>
 		</div>
