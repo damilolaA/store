@@ -5,9 +5,9 @@
 ?>
 
 <div class="wrapper">
-		<h1 id="register-label">Admin Register</h1>
+		<h1 id="register-label">Add Products</h1>
 		<hr>
-		<form id="register"  action ="register.php" method ="POST">
+		<form id="register"  action ="products.php" method ="POST">
 			<div>
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
@@ -31,10 +31,10 @@
 				<input type="password" name="pword" placeholder="password">
 			</div>
 
-			<input type="submit" name="register" value="register">
+	<!--		<input type="submit" name="register" value="register">
 		</form>
 
-		<h4 class="jumpto">Have an account? <a href="login.php">login</a></h4>
+		<h4 class="jumpto">Have an account? <a href="login.php">login</a></h4>		-->
 	</div>
 
 
