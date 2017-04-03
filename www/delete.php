@@ -4,26 +4,27 @@
 	
 	include 'includes/db.php';	
 
-	if(isset($_POST['deletecat']) && is_numeric($_POST['deletecat'])){
+//	include 'category.php';
 
-	$delete = $_POST['deletecat'];	
+//	if(isset($_GET['category_id']) && is_numeric($_GET['category_id'])){
+
+	$id = $_GET['id'];	
 	
-	$stmt = $conn->prepare("DELETE FROM categories WHERE category_id = $delete LIMIT 1");
+	$stmt = $conn->prepare("DELETE FROM categories WHERE category_id = .$id ");
 
 	//$stmt->bindParam(':d', $delete);
 	$stmt->execute();
 	//$stmt->close();
 
-	}
+	
 	?>
 
+<form action="category.php" method="post">
 
-	<form action="" method="POST">
-
-	<input type="hidden" name="deletecat" >
-	<input type="submit" value="Delete">
-		
-	</form>
+	<input type="hidden" name="delcat" value="$id">
+	<button type="submit">DELETE</button>
+	
+</form>
 
 
 	

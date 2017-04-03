@@ -88,8 +88,9 @@
 						<td><?php echo $select['category_name'] ?></td>
 						<td><?php echo $select['category_id']?></td>	
 
+						<?php	$id = $select['category_id'];  ?>
 						<td><a href="category.php">edit</a></td>
-						<td><a href="#">delete</a></td>
+						<td><a href="delete.php? id=<?php $id; ?>">delete</a></td>
 
 					</tr>   
 					<?php } ?>
