@@ -1,3 +1,16 @@
+<?php
+
+
+	include 'includes/db.php';
+
+
+
+	$stmt = $conn->prepare("SELECT * FROM books");
+
+	$stmt->execute();
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,9 +49,9 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>the knowledge gap</td>
-						<td>maja</td>
-						<td>January, 10</td>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td><a href="#">edit</a></td>
