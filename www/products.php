@@ -5,12 +5,12 @@
 
 	include 'includes/header1.php';
 
-		
+		$errors = [];
 	if(array_key_exists('save', $_POST)){
-			$errors = [];
+			
 
 		if(empty($_POST['title'])) {
-			$errors[] = "Please enter book title";
+			$errors['title'] = "Please enter book title";
 		}
 
 		if(empty($_POST['author'])) {
@@ -58,7 +58,11 @@
 		<hr>
 		<form id="register"  action ="products.php" method ="POST" enctype="multipart/form-data">
 			<div>
-				
+					<?php
+						$show = displayErrors($errors, 'title');
+						echo $show;
+
+					?>
 				<label>book title:</label>
 				<input type="text" name="title" placeholder="book title">
 			</div>
@@ -91,7 +95,7 @@
 					<label>product image</label>
 					<input type="file" name="pic">
 					</div>
-					
+
 					<input type="submit" name="save" value="Add Product">
 					
 				</form>	
