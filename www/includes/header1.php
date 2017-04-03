@@ -12,7 +12,7 @@
 				<ul class="clearfix">
 					<li><a href="category.php" class="selected">Add Category</a></li>
 					<li><a href="products.php">Add Products</a></li>
-					<li><a href="viewcat.php">View Products</a></li>
+					<li><a href="viewprod.php">View Products</a></li>
 					<li><a href="#">Logout</a></li>
 				</ul>
 			</nav>
