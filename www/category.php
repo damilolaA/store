@@ -27,6 +27,13 @@
 
 	$stmt->execute();
 
+	if(isset($_GET['category_id'])){
+
+		 $id = $_GET['category_id'];
+
+			delCategory($conn, $id);
+		}
+	
 	
 ?>
 
@@ -83,7 +90,7 @@
 				</thead>
 				<tbody>
 					<tr>
-					
+						
 				<?php	while($select = $stmt->fetch(PDO::FETCH_ASSOC)) {?>
 					
 						<td><?php echo $select['category_name'] ?></td>
@@ -91,7 +98,7 @@
 
 						<?php	$id = $select['category_id'];  ?>
 						<td><a href="edit.php? id=<?php $id; ?>">edit</a></td>
-						<td><a href="delete.php? id=<?php $id; ?>">delete</a></td>
+						<td><a href="category.php?del=delete&category_id=$id">delete</a></td>
 
 					</tr>   
 					<?php } ?>
