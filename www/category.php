@@ -90,7 +90,7 @@
 						<td><?php echo $select['category_id']?></td>	
 
 						<?php	$id = $select['category_id'];  ?>
-						<td><a href="category.php">edit</a></td>
+						<td><a href="edit.php? id=<?php $id; ?>">edit</a></td>
 						<td><a href="delete.php? id=<?php $id; ?>">delete</a></td>
 
 					</tr>   
