@@ -1,13 +1,13 @@
 <?php
 	include 'includes/db.php';
 
-	include 'includes/header1.php';
-
 	include 'includes/functions.php';
 
+	include 'includes/header1.php';
 
-	if(array_key_exists('register', $_POST)){
-		$errors = [];
+		
+	if(array_key_exists('save', $_POST)){
+			$errors = [];
 
 		if(empty($_POST['title'])) {
 			$errors[] = "Please enter book title";
@@ -33,22 +33,36 @@
 			$errors[] = "Please enter book isbn number";
 		}
 
-		if(empty($errors)){
 
-			
+		fileUpload($_FILES, $errors, 'pic');
+		#be sure a file was selected...
+		if(empty($_FILES['pic']['name'])){
+			$errors[] = "Please choose a file";
+		
 		}
 
-			}
+
+
+		if(empty($errors)){
+
+			$clean = array_map('trim', $_POST);
+
+			addProduct($conn, $clean);
+		}
+}
+			
 ?>
 
 <div class="wrapper">
 		<h1 id="register-label">Add Products</h1>
 		<hr>
-		<form id="register"  action ="products.php" method ="POST">
+		<form id="register"  action ="products.php" method ="POST" enctype="multipart/form-data">
 			<div>
+				
 				<label>book title:</label>
 				<input type="text" name="title" placeholder="book title">
 			</div>
+
 			<div>
 				<label>book author:</label>	
 				<input type="text" name="author" placeholder="book author">
@@ -73,8 +87,18 @@
 				<input type="text" name="isbn" placeholder="isbn">
 			</div>
 
-			<input type="submit" name="register" value="Add Product">
-			</form>
+			<div>
+					<label>product image</label>
+					<input type="file" name="pic">
+					</div>
+					
+					<input type="submit" name="save" value="Add Product">
+					
+				</form>	
+
+
+		<!--	<input type="submit" name="register" value="Add Product">
+			</form>   -->
 	</div>
 
 
