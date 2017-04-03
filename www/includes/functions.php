@@ -160,4 +160,15 @@
 
 	 		return $result;
 	 	}    */
+
+	 	function delCategory ($dbconn, $name){
+
+	 		$stmt = $dbconn->prepare("SELECT * FROM categories WHERE category_id = :c");
+
+	 		$stmt->bindParam(':c', $name);
+	 		$stmt->execute();
+
+	 		$success = "Category deleted successfully";
+	 		header("Location:category.php?success=$success");
+	 	}
 ?>
