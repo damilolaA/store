@@ -4,6 +4,41 @@
 	include 'includes/header1.php';
 
 	include 'includes/functions.php';
+
+
+	if(array_key_exists('register', $_POST)){
+		$errors = [];
+
+		if(empty($_POST['title'])) {
+			$errors[] = "Please enter book title";
+		}
+
+		if(empty($_POST['author'])) {
+			$errors[] = "Please enter book author";
+		}
+
+		if(empty($_POST['cat'])) {
+			$errors[] = "Please enter category id";
+		}
+
+		if(empty($_POST['price'])) {
+			$errors[] = "Please enter book price";
+		}
+
+		if(empty($_POST['date'])) {
+			$errors[] = "Please enter publication date";
+		}
+
+		if(empty($_POST['isbn'])) {
+			$errors[] = "Please enter book isbn number";
+		}
+
+		if(empty($errors)){
+
+			
+		}
+
+			}
 ?>
 
 <div class="wrapper">
