@@ -1,7 +1,9 @@
 <?php
+	include 'includes/db.php';
 
 	include 'includes/header1.php';
 
+	include 'includes/functions.php';
 ?>
 
 <div class="wrapper">
@@ -9,32 +11,35 @@
 		<hr>
 		<form id="register"  action ="products.php" method ="POST">
 			<div>
-				<label>first name:</label>
-				<input type="text" name="fname" placeholder="first name">
+				<label>book title:</label>
+				<input type="text" name="title" placeholder="book title">
 			</div>
 			<div>
-				<label>last name:</label>	
-				<input type="text" name="lname" placeholder="last name">
+				<label>book author:</label>	
+				<input type="text" name="author" placeholder="book author">
 			</div>
 
 			<div>
-				<label>email:</label>
-				<input type="text" name="email" placeholder="email">
+				<label>category id:</label>	
+				<input type="text" name="cat" placeholder="category id">
+			</div>
+
+			<div>
+				<label>price:</label>
+				<input type="text" name="price" placeholder="price">
 			</div>
 			<div>
-				<label>password:</label>
-				<input type="password" name="password" placeholder="password">
+				<label>publication date:</label>
+				<input type="text" name="date" placeholder="publication date">
 			</div>
  
 			<div>
-				<label>confirm password:</label>	
-				<input type="password" name="pword" placeholder="password">
+				<label>isbn:</label>	
+				<input type="text" name="isbn" placeholder="isbn">
 			</div>
 
-	<!--		<input type="submit" name="register" value="register">
-		</form>
-
-		<h4 class="jumpto">Have an account? <a href="login.php">login</a></h4>		-->
+			<input type="submit" name="register" value="Add Product">
+			</form>
 	</div>
 
 
