@@ -75,7 +75,7 @@
 
 	 			$_SESSION['id'] = $row['admin_id'];
 	 			$_SESSION['name'] = $row['fname'].' '.$row['lname'];
-	 			header("Location:home.php");
+	 			header("Location:category.php");
 
 	 		}else{
 	 			$login_error = "Invalid email and/or password";
