@@ -129,6 +129,22 @@
 	 	}
 
 
+	 	function addProduct($dbconn, $add){
+
+	 		$stmt = $dbconn->prepare("INSERT INTO books('title', 'author', 'category_id', 'price', 'publication_date', 'isbn')
+																	VALUES(:t, :a, :c, :p, :pd, :i)");
+
+	 		$data = [
+	 					':t' => $add['title'],
+	 					':a' => $add['author'],
+	 					':c' => $add['cat'],
+	 					':p' => $add['price'],
+	 					':pd' => $add['date'],
+	 					':i' => $add['isbn'] 
+	 					];
+
+	 		$stmt->execute($data);			
+	 	}
 	/* 	function viewCategory($dummy){
 
 	 		$result = "";
