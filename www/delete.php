@@ -18,8 +18,7 @@
 	?>
 
 
-	<form action="category.php" method="POST">
-
+	<form action="" method="POST">
 
 	<input type="hidden" name="deletecat" >
 	<input type="submit" value="Delete">
