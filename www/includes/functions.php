@@ -134,6 +134,8 @@
 	 		$stmt = $dbconn->prepare("INSERT INTO books(title,author, category_id, price, publication_date, isbn, book_image)
 																	VALUES(:t, :a, :c, :p, :pd, :i, :d)");
 
+	 		$destination = 'online_store/www/uploads/';
+
 	 		$data = [
 	 					':t' => $add['title'],
 	 					':a' => $add['author'],
@@ -141,7 +143,7 @@
 	 					':p' => $add['price'],
 	 					':pd' => $add['date'],
 	 					':i' => $add['isbn'], 
-	 					':d' => $add['pic']
+	 					':d' => $destination
 	 					];
 
 	 		$stmt->execute($data);			
