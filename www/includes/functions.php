@@ -190,14 +190,42 @@
 	 		return $result;
 	 	}    */
 
-	 	function delCategory ($dbconn, $name){
+	 	function delProduct ($dbconn, $name){
 
-	 		$stmt = $dbconn->prepare("SELECT * FROM categories WHERE category_id = :c");
+	 		$stmt = $dbconn->prepare("DELETE FROM books WHERE book_id = :c");
 
 	 		$stmt->bindParam(':c', $name);
 	 		$stmt->execute();
 
 	 		$success = "Category deleted successfully";
-	 		header("Location:category.php?success=$success");
+	 		header("Location:viewprod.php?success=$success");
+	 	}
+
+
+
+	 	function viewProduct ($dbconn){
+
+	 		$stmt = $dbconn->prepare("SELECT * FROM books");
+
+	 		$stmt->execute();
+	 		$result = "";
+
+	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+	 			$book_id = $row['book_id'];
+	 			$title   = $row['title'];
+
+	 			$result .= '<tr><td>'.$row['title'].'</td>';
+	 			$result .= '<td>'.$row['author'].'</td>';
+	 			$result .= '<td>'.$row['category_id'].'</td>';
+	 			$result .= '<td>'.$row['price'].'</td>';
+	 			$result .= '<td>'.$row['publication_date'].'</td>';
+	 			$result .= '<td>'.$row['ISBN'].'</td>';
+	 			$result .= '<td><img src="'.$row['book_image'].'"height="50" width="50" </td>';
+	 			$result .= "<td><a href=viewprod.php?action=edit&book_id=$book_id&title=$title>edit</a></td>";
+	 			$result .= "<td><a href=viewprod.php?del=delete&book_id=$book_id>delete</a></td></tr>";
+	 		}
+
+	 		return $result;
 	 	}
 ?>

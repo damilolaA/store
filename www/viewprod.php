@@ -7,10 +7,13 @@
 
 
 
-	$stmt = $conn->prepare("SELECT * FROM books");
+	if(isset($_GET['del'])){
 
-	$stmt->execute();
+		if($_GET['del'] = "delete"){
 
+			delProduct ($conn, $_GET['book_id']);
+		}
+	}
 
 ?>
 <!DOCTYPE html>
@@ -47,22 +50,16 @@
 						<th>publication date</th>
 						<th>isbn</th>
 						<th>image</th>
+						<th>edit</th>
+						<th>delete</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {?>
-						<td><?php echo $row['title'] ?></td>
-						<td><?php echo $row['author'] ?></td>
-						<td><?php echo $row['category_id']?></td>
-						<td><?php echo $row['price']?></td>
-						<td><?php echo $row['publication_date']?></td>
-						<td><?php echo $row['ISBN']?></td>
-						<td><img src="<?php echo $row['book_image']?>" height="50px" width="50px"></td>
-						<td><a href="#">edit</a></td>
-						<td><a href="#">delete</a></td>
-					</tr>
-					<?php }?>
+					
+						
+					<?php	$show = viewProduct($conn);  echo $show;  ?>
+					
+					
           		</tbody>
 			</table>
 		</div>
@@ -80,8 +77,6 @@
 			<p>&copy; 2016;
 		</div>
 	</section>
-
-		<img src="" >
 
 </body>
 </html>
