@@ -1,5 +1,7 @@
 <?php
 	
+	session_start();
+
 	$page_title = "Category";
 
 	include 'includes/db.php';
@@ -7,6 +9,8 @@
 	include 'includes/functions.php';
 
 	include 'includes/header1.php';
+
+	authenticate();
 
 	$errors = [];
 
