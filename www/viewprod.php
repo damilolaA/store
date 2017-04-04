@@ -5,6 +5,8 @@
 
 	include 'includes/functions.php';
 
+	include 'includes/header1.php';
+
 
 
 	if(isset($_GET['del'])){
@@ -21,11 +23,17 @@
 		$clean = array_map('trim', $_POST);
 
 			editProduct($conn, $clean);
+
 		}
+
+			if(isset($_GET['success'])){
+
+				echo $_GET['success'];
+			}
 	
 
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<title>View Category</title>
@@ -45,7 +53,7 @@
 				</ul>
 			</nav>
 		</div>
-	</section>
+	</section>  -->
 	<div class="wrapper">
 		<div id="stream">
 
@@ -111,11 +119,8 @@
 		</div>
 	</div>
 
-	<section class="foot">
-		<div>
-			<p>&copy; 2016;
-		</div>
-	</section>
+	<?php
 
-</body>
-</html>
+		include 'includes/footer.php';
+
+	?>
