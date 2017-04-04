@@ -131,10 +131,39 @@
 
 	 	function addProduct($dbconn, $add){
 
+	 			define('MAX_FILE_SIZE', '2097152');
+
+	 			$ext = ['image/jpeg', 'image/jpg', 'image/png'];
+
+	 		# check file size
+	 		if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
+
+	 			$errors[] = "file size exceeds maximum. maximum: " .MAX_FILE_SIZE;
+	 		}
+
+	 		# check extensions
+	 		if(!in_array($_FILES['pic']['type'], $ext)){
+	 			$errors[] = "invalid file type";
+	 		}
+
+	 		# generate random number to append to name...
+	 		$rnd = rand(0000000000, 9999999999);
+
+	 		#strip file name of white spaces...
+	 		$strip = str_replace(" ", "_", $_FILES['pic']['name']);
+
+	 		$filename = $rnd.$strip;
+	 		$destination = 'uploads/'.$filename;
+
+	 		if(! move_uploaded_file($_FILES['pic']['tmp_name'], $destination)){
+
+	 			$errors[] = "file upload failed";
+	 		}
+
 	 		$stmt = $dbconn->prepare("INSERT INTO books(title,author, category_id, price, publication_date, isbn, book_image)
 																	VALUES(:t, :a, :c, :p, :pd, :i, :d)");
 
-	 		$destination = 'online_store/www/uploads/';
+	 		$destination = 'uploads/'.$filename;
 
 	 		$data = [
 	 					':t' => $add['title'],
