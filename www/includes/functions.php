@@ -85,6 +85,8 @@
 	 
 	 }
 
+
+
 	 	function fileUpload($right, $left, $center){
 
 	 		define('MAX_FILE_SIZE', '2097152');
@@ -126,7 +128,60 @@
 	 		$stmt->bindParam(':c', $fix['cat']);
 	 		$stmt->execute();
 
-	 	}
+		 	}
+
+
+		 function viewCategory($dbconn){
+
+		 	$stmt = $dbconn->prepare("SELECT * FROM categories");
+		 	$stmt->execute();
+
+		 	$result = "";
+
+		 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+		 		$cat_id = $row['category_id'];
+		 		$cat_name = $row['category_name'];
+
+
+		 		$result .= '<tr><td>'.$row['category_id'].'</td>';
+		 		$result .= '<td>'.$row['category_name'].'</td>';
+		 		$result .= "<td><a href='category.php?action=edit&category_id=$cat_id&category_name=$cat_name'>edit</a></td>";
+		 		$result .= "<td><a href='category.php?dele=delete&category_id=$cat_id'>delete</a></td></tr>";
+
+		 	}
+
+		 		return $result;
+
+		 }
+
+
+
+		 function delCategory($dbconn, $look){
+
+		 	$stmt = $dbconn->prepare("DELETE FROM categories WHERE category_id = :c");
+
+		 	$stmt->bindParam(':c', $look);
+		 	$stmt->execute();
+
+		 	$success = "Category successfully deleted";
+		 	header("Location:category.php?success=$success");
+		 }
+
+
+		 function editCategory($dbconn, $look){
+
+		 	$stmt = $dbconn->prepare("UPDATE categories SET category_name = :cn WHERE category_id = :ci");
+
+		 	$data = [
+		 				":cn" => $look['catname'],
+		 				":ci" => $look['catid'],
+		 				];
+		 	$stmt->execute($data);
+
+		 		$success = "Category successfully edited";
+		 		header("Location:category.php?success=$success");
+		 }
 
 
 	 	function addProduct($dbconn, $add){
@@ -177,18 +232,7 @@
 
 	 		$stmt->execute($data);			
 	 	}
-	/* 	function viewCategory($dummy){
-
-	 		$result = "";
-
-	 		while($select = $dummy->fetch(PDO::FETCH_ASSOC)){
-
-	 			$result .= '<tr><td>'.$select['category_name'].'</td>';
-	 			$result .= '<td>'.$select['category_id'].'</td></tr>';
-	 		}
-
-	 		return $result;
-	 	}    */
+	
 
 	 	function delProduct ($dbconn, $name){
 
