@@ -11,9 +11,9 @@
 			<nav>
 				<ul class="clearfix">
 					<li><a href="category.php" class="selected">Add Category</a></li>
-					<li><a href="products.php">Add Products</a></li>
-					<li><a href="viewprod.php">View Products</a></li>
-					<li><a href="#">Logout</a></li>
+					<li><a href="products.php" class="selected">Add Products</a></li>
+					<li><a href="viewprod.php" class="selected">View Products</a></li>
+					<li><a href="logout.php" class="selected">Logout</a></li>
 				</ul>
 			</nav>
 		</div>
