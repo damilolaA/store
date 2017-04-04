@@ -1,5 +1,7 @@
 <?php
 	
+	session_start();
+
 	$page_title = "Add Products";
 
 	include 'includes/db.php';
@@ -7,6 +9,8 @@
 	include 'includes/functions.php';
 
 	include 'includes/header1.php';
+
+	authenticate();
 
 		$errors = [];
 	if(array_key_exists('save', $_POST)){
@@ -136,6 +140,13 @@
 
 		<!--	<input type="submit" name="register" value="Add Product">
 			</form>   -->
+	
+
+	<div class="paginated">
+			<a href="category.php">1</a>
+			<a href="products.php">2</a>
+			<a href="viewprod.php">3</a>
+		</div>
 	</div>
 
 
