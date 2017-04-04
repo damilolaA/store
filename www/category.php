@@ -1,5 +1,7 @@
 <?php
 	
+	$page_title = "Category";
+
 	include 'includes/db.php';
 
 	include 'includes/functions.php';

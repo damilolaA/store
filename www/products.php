@@ -1,4 +1,7 @@
 <?php
+	
+	$page_title = "Add Products";
+
 	include 'includes/db.php';
 
 	include 'includes/functions.php';

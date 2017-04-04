@@ -1,6 +1,7 @@
 <?php
-
-
+	
+	$page_title = "View Product";
+	
 	include 'includes/db.php';
 
 	include 'includes/functions.php';
