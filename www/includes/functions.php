@@ -214,6 +214,10 @@
 
 	 			$book_id = $row['book_id'];
 	 			$title   = $row['title'];
+	 			$author  = $row['author'];
+	 			$price   = $row['price'];
+	 			$date    = $row['publication_date'];
+	 			$isbn    = $row['ISBN'];
 
 	 			$result .= '<tr><td>'.$row['title'].'</td>';
 	 			$result .= '<td>'.$row['author'].'</td>';
@@ -222,10 +226,28 @@
 	 			$result .= '<td>'.$row['publication_date'].'</td>';
 	 			$result .= '<td>'.$row['ISBN'].'</td>';
 	 			$result .= '<td><img src="'.$row['book_image'].'"height="50" width="50" </td>';
-	 			$result .= "<td><a href=viewprod.php?action=edit&book_id=$book_id&title=$title>edit</a></td>";
+	 			$result .= "<td><a href='viewprod.php?action=edit&book_id=$book_id&title=$title&author=$author&price=$price&publication_date=$date&
+	 															ISBN=$isbn'>edit</a></td>";
 	 			$result .= "<td><a href=viewprod.php?del=delete&book_id=$book_id>delete</a></td></tr>";
 	 		}
 
 	 		return $result;
+	 	}
+
+
+	 	function editProduct ($dbconn, $here){
+
+	 		$stmt = $dbconn->prepare("UPDATE books SET title = :ti, author = :au, price = :pr, publication_date = :pu, ISBN = :is WHERE book_id = :bi");
+
+	 		$data = [ 
+	 					':ti' => $here['title'],
+	 					':au' => $here['author'],
+	 					':pr' => $here['price'],
+	 					':pu' => $here['publication_date'],
+	 					':is' => $here['isbn'],
+	 					':bi' => $here['id']
+	 					];
+
+	 		$stmt->execute($data);			
 	 	}
 ?>
