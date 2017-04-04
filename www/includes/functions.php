@@ -179,7 +179,7 @@
 		 				];
 		 	$stmt->execute($data);
 
-		 		$success = "Category successfully edited";
+		 		$success = "Category successfully deleted";
 		 		header("Location:category.php?success=$success");
 		 }
 
@@ -231,6 +231,9 @@
 	 					];
 
 	 		$stmt->execute($data);			
+
+	 		$success = "Product has been added successfully";
+	 		header("Location:products.php?success=$success");
 	 	}
 	
 
@@ -241,7 +244,7 @@
 	 		$stmt->bindParam(':c', $name);
 	 		$stmt->execute();
 
-	 		$success = "Category deleted successfully";
+	 		$success = "Product deleted successfully";
 	 		header("Location:viewprod.php?success=$success");
 	 	}
 
@@ -293,5 +296,8 @@
 	 					];
 
 	 		$stmt->execute($data);			
+
+	 		$success = "Product successfully edited";
+	 		header("Location:viewprod.php?success=$success");
 	 	}
 ?>
