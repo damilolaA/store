@@ -49,7 +49,12 @@
 
 			addProduct($conn, $clean);
 		}
-}
+
+}	
+
+	if(isset($_GET['success'])){
+			echo $_GET['success'];
+		}
 			
 ?>
 
