@@ -34,7 +34,7 @@
 		}
 
 
-		fileUpload($_FILES, $errors, 'pic');
+	//	fileUpload($_FILES, $errors, 'pic');
 		#be sure a file was selected...
 		if(empty($_FILES['pic']['name'])){
 			$errors[] = "Please choose a file";
