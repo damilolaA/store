@@ -300,4 +300,13 @@
 	 		$success = "Product successfully edited";
 	 		header("Location:viewprod.php?success=$success");
 	 	}
+
+
+	 	function authenticate(){
+
+	 		if(!isset($_SESSION['id']) && !isset($_SESSION['name'])){
+
+	 			header("Location:login.php");
+	 		}
+	 	}
 ?>
