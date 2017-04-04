@@ -15,6 +15,15 @@
 		}
 	}
 
+
+	if(array_key_exists('edit', $_POST)){
+
+		$clean = array_map('trim', $_POST);
+
+			editProduct($conn, $clean);
+		}
+	
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,6 +48,36 @@
 	</section>
 	<div class="wrapper">
 		<div id="stream">
+
+			<?php 
+				if(isset($_GET['action'])){
+
+					if($_GET['action'] = "edit"){
+
+
+
+			?>
+
+		<h3>Edit Product</h3>
+
+		<form id="register" action="viewprod.php" method="POST">
+			
+			<input type="text" name="title" placeholder="Book Title" value="<?php echo $_GET['title'];?>">
+			<input type="text" name="author" placeholder="Book Author" value="<?php echo $_GET['author'];?>">
+			<input type="text" name="price" placeholder="Book Price" value="<?php echo $_GET['price'];?>">
+			<input type="text" name="publication_date" placeholder="Publication Date" value="<?php echo $_GET['publication_date'];?>">
+			<input type="text" name="isbn" placeholder="ISBN of book" value="<?php echo $_GET['ISBN'];?>">
+			<input type="hidden" name="id" value="<?php echo $_GET['book_id'];?>">	
+			<input type="submit" name="edit" value="edit">
+
+
+		</form>
+
+			<?php 
+						}
+					}
+			 ?>
+
 		<h1 id="register-label">View Products</h1>
 			<table id="tab">
 				<thead>
