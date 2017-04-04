@@ -41,6 +41,9 @@
 
 	</section>
 	<div class="wrapper">	
+	<h1 id="register-label">Add Category</h1>
+
+	<hr>
 
 						<?php
 
@@ -112,10 +115,9 @@
 		</div>
 
 		<div class="paginated">
-			<a href="#">1</a>
-			<a href="#">2</a>
-			<span>3</span>
-			<a href="#">2</a>
+			<a href="category.php">1</a>
+			<a href="products.php">2</a>
+			<a href="viewprod.php">3</a>
 		</div>
 	</div>
 
