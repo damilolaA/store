@@ -58,7 +58,7 @@
 						<td><?php echo $row['price']?></td>
 						<td><?php echo $row['publication_date']?></td>
 						<td><?php echo $row['ISBN']?></td>
-						<td><?php echo $row['book_image']?></td>
+						<td><img src="<?php echo $row['book_image']?>" height="50px" width="50px"></td>
 						<td><a href="#">edit</a></td>
 						<td><a href="#">delete</a></td>
 					</tr>
@@ -80,5 +80,8 @@
 			<p>&copy; 2016;
 		</div>
 	</section>
+
+		<img src="" >
+
 </body>
 </html>
