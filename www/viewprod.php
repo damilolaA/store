@@ -1,5 +1,7 @@
 <?php
 	
+	session_start();
+
 	$page_title = "View Product";
 	
 	include 'includes/db.php';
@@ -7,6 +9,8 @@
 	include 'includes/functions.php';
 
 	include 'includes/header1.php';
+
+	authenticate();
 
 
 
@@ -34,27 +38,7 @@
 	
 
 ?>
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>View Category</title>
-	<link rel="stylesheet" type="text/css" href="styles/styles.css">
-</head>
 
-<body>
-	<section>
-		<div class="mast">
-			<h1>T<span>SSB</span></h1>
-			<nav>
-				<ul class="clearfix">
-					<li><a href="category.php" class="selected">Add Category</a></li>
-					<li><a href="products.php">Add Products</a></li>
-					<li><a href="viewprod.php">View Products</a></li>
-					<li><a href="#">logout</a></li>
-				</ul>
-			</nav>
-		</div>
-	</section>  -->
 	<div class="wrapper">
 		<div id="stream">
 
@@ -88,6 +72,7 @@
 			 ?>
 
 		<h1 id="register-label">View Products</h1>
+		<hr>
 			<table id="tab">
 				<thead>
 					<tr>
@@ -113,10 +98,9 @@
 		</div>
 
 		<div class="paginated">
-			<a href="#">1</a>
-			<a href="#">2</a>
-			<span>3</span>
-			<a href="#">2</a>
+			<a href="category.php">1</a>
+			<a href="products.php">2</a>
+			<a href="viewprod.php">3</a>
 		</div>
 	</div>
 
