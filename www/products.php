@@ -15,6 +15,9 @@
 		$errors = [];
 	if(array_key_exists('save', $_POST)){
 			
+		define('MAX_FILE_SIZE', '2097152');
+
+	 	$ext = ['image/jpeg', 'image/jpg', 'image/png'];
 
 		if(empty($_POST['title'])) {
 			$errors['title'] = "Please enter book title";
@@ -40,14 +43,22 @@
 			$errors['isbn'] = "Please enter book isbn number";
 		}
 
+		if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 
-	//	fileUpload($_FILES, $errors, 'pic');
-		#be sure a file was selected...
-		if(empty($_FILES['pic']['name'])){
-			$errors[] = "Please choose a file";
+	 	$errors[] = "file size exceeds maximum. maximum: " .MAX_FILE_SIZE;
+	 		
+	 		}
+
+	 	if(!in_array($_FILES['pic']['type'], $ext)){
+	 			$errors[] = "invalid file type";
+	 		}
 		
+		$check = fileuploads($_FILES, 'pic', 'uploads/');
+		if($check[0]){
+			$destination = $check[1];   #$check[1] holds the destination
+		}else {
+			$errors['pic'] = "file upload failed";
 		}
-
 
 
 		if(empty($errors)){
@@ -56,12 +67,15 @@
 
 			addProduct($conn, $clean);
 		}
+	}	
+		
 
-}	
 
 	if(isset($_GET['success'])){
 			echo $_GET['success'];
 		}
+
+	
 			
 ?>
 
@@ -93,8 +107,11 @@
 					$return = displayErrors($errors, 'cat');
 					echo $return;
 				?>
-				<label>category id:</label>	
-				<input type="text" name="cat" placeholder="category id">
+				<label>category name:</label>	
+				<select name="cat">
+					<option value="">Select</option>
+					<?php $show = getCategory($conn); echo $show; ?>
+				</select>
 			</div>
 
 			<div>

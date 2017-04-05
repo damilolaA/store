@@ -28,7 +28,18 @@
 			#clean unwanted values in the $_POST array
 			$clean = array_map('trim', $_POST);
 
-			adminLogin($conn, $clean);
+		$chk = adminLogin($conn, $clean);
+
+		if($chk[0]){
+
+				$_SESSION['id'] = $chk[1]['admin_id'];
+	 			$_SESSION['name'] = $chk[1]['fname'].' '.$chk[1]['lname'];
+	 			redirect("category.php");
+	 			
+		}else {
+
+			redirect("login.php?msg=invalid username or password");
+		}
 		}
 	}
 

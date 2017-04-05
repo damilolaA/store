@@ -58,6 +58,7 @@
 
 	 function adminLogin($dbconn, $enter){
 
+	 	$result = [];
 	 	#prepare statement
 	 	$stmt = $dbconn->prepare("SELECT * FROM admins WHERE email=:e");
 
@@ -65,25 +66,26 @@
 	 	$stmt->bindParam(":e", $enter['email']);
 	 	$stmt->execute();
 
+	 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	 	#count rows returned
 	 	$count = $stmt->rowCount();
 
-	 	if($count == 1){
-	 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-	 		if(password_verify($enter['password'], $row['hash'])){
-
-	 			$_SESSION['id'] = $row['admin_id'];
-	 			$_SESSION['name'] = $row['fname'].' '.$row['lname'];
-	 			header("Location:category.php");
-
-	 		}else{
-	 			$login_error = "Invalid email and/or password";
-	 			header("Location:login.php?login_error=$login_error");
-	 		}
+	 	if($count !==1 || !password_verify($enter['password'], $row['hash'])){
+	 		$result[] = false;
+	 	} else {
+	 		$result[] = true;
+	 		$result[] = $row;
 	 	}
-	 
-	 }
+
+	 	//if($count == 1){	 
+	 	return $result;
+	 }	
+
+
+	 	function redirect($loc){
+
+	 		header("Location: ".$loc);
+	 	}
 
 
 
@@ -184,36 +186,32 @@
 		 }
 
 
-	 	function addProduct($dbconn, $add){
+	 	function fileuploads($files, $name, $add){
 
-	 			define('MAX_FILE_SIZE', '2097152');
-
-	 			$ext = ['image/jpeg', 'image/jpg', 'image/png'];
-
-	 		# check file size
-	 		if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
-
-	 			$errors[] = "file size exceeds maximum. maximum: " .MAX_FILE_SIZE;
-	 		}
-
-	 		# check extensions
-	 		if(!in_array($_FILES['pic']['type'], $ext)){
-	 			$errors[] = "invalid file type";
-	 		}
-
+	 		$data = [];
 	 		# generate random number to append to name...
 	 		$rnd = rand(0000000000, 9999999999);
 
 	 		#strip file name of white spaces...
-	 		$strip = str_replace(" ", "_", $_FILES['pic']['name']);
+	 		$strip = str_replace(" ", "_", $files[$name]['name']);
 
 	 		$filename = $rnd.$strip;
-	 		$destination = 'uploads/'.$filename;
+	 		$destination = $add.$filename;
 
-	 		if(! move_uploaded_file($_FILES['pic']['tmp_name'], $destination)){
+	 		if(!move_uploaded_file($files[$name]['tmp_name'], $destination)){
 
-	 			$errors[] = "file upload failed";
-	 		}
+	 			/*$errors[] = "file upload failed";*/
+	 			$data[] = false;
+	 		} else {
+	 			$data[] = true;
+	 			$data[] = $destination;
+	 		}	 		
+
+	 		return $data;
+	 	}
+
+
+	 			function addProduct($dbconn, $add){
 
 	 		$stmt = $dbconn->prepare("INSERT INTO books(title,author, category_id, price, publication_date, isbn, book_image)
 																	VALUES(:t, :a, :c, :p, :pd, :i, :d)");
@@ -225,7 +223,7 @@
 	 					':a' => $add['author'],
 	 					':c' => $add['cat'],
 	 					':p' => $add['price'],
-	 					':pd' => $add['date'],
+	 					':pd'=> $add['date'],
 	 					':i' => $add['isbn'], 
 	 					':d' => $destination
 	 					];
@@ -263,6 +261,7 @@
 	 			$title   = $row['title'];
 	 			$author  = $row['author'];
 	 			$price   = $row['price'];
+	 			$cat     = $row['category_id'];
 	 			$date    = $row['publication_date'];
 	 			$isbn    = $row['ISBN'];
 
@@ -273,9 +272,8 @@
 	 			$result .= '<td>'.$row['publication_date'].'</td>';
 	 			$result .= '<td>'.$row['ISBN'].'</td>';
 	 			$result .= '<td><img src="'.$row['book_image'].'"height="50" width="50" </td>';
-	 			$result .= "<td><a href='viewprod.php?action=edit&book_id=$book_id&title=$title&author=$author&price=$price&publication_date=$date&
-	 															ISBN=$isbn'>edit</a></td>";
-	 			$result .= "<td><a href=viewprod.php?del=delete&book_id=$book_id>delete</a></td></tr>";
+	 			$result .= "<td><a href='editprod.php?book_id=$book_id'>edit</a></td>";
+	 			$result .= "<td><a href=editprod.php?del=delete&book_id=$book_id>delete</a></td></tr>";
 	 		}
 
 	 		return $result;
@@ -309,4 +307,61 @@
 	 			header("Location:login.php");
 	 		}
 	 	}
+
+	 	function getBookByID($dbconn, $bookID) {
+	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE book_id=:id");
+	 		$stmt->bindParam(':id', $bookID);
+
+	 		$stmt->execute();
+	 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	 		return $row;
+	 	}
+
+
+	 	function getCategory($dbconn, $catname){
+
+	 		$stmt = $dbconn->prepare("SELECT * FROM categories");
+	 		$stmt->execute();
+	 		$result = "";
+
+	 		while($row = $stmt->fetch()){
+
+	 			$cat_id = $row['category_id'];
+	 			$cat_name = $row['category_name'];
+
+	 			$result .= "<option value='$cat_id'>$cat_name</option>";
+	 		}
+	 		return $result;
+	 	}
+
+
+	 	function doeditCategory($dbconn, $catname){
+
+	 		$stmt = $dbconn->prepare("SELECT * FROM categories");
+	 		$stmt->execute();
+	 		$result = "";
+
+	 		while($row = $stmt->fetch()){
+
+	 			$cat_id = $row['category_id'];
+	 			$cat_name = $row['category_name'];
+
+	 			if($cat_name == $catname) { continue ;}
+
+	 			$result .= "<option value='$cat_id'>$cat_name</option>";
+	 		}
+	 		return $result;
+	 	}
+
+	 	function getcategorybyID($dbconn, $categories){
+	 		$stmt = $dbconn->prepare("SELECT * FROM categories WHERE category_id = :ca");
+	 		$stmt->bindParam(':ca', $categories);
+	 		$stmt->execute();
+
+	 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	 		return $row;
+
+	 		}
 ?>
