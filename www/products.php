@@ -52,31 +52,27 @@
 	 	if(!in_array($_FILES['pic']['type'], $ext)){
 	 			$errors[] = "invalid file type";
 	 		}
-		
-		$check = fileuploads($_FILES, 'pic', 'uploads/');
-		if($check[0]){
-			$destination = $check[1];   #$check[1] holds the destination
+
+		if(empty($errors)){
+
+			$check = fileuploads($_FILES, 'pic', 'uploads/');
+		if($check[0]){					#$check[0] returns fileupload is successful
+			 $destination = $check[1];    #$check[1] holds the destination
 		}else {
 			$errors['pic'] = "file upload failed";
 		}
 
-
-		if(empty($errors)){
-
 			$clean = array_map('trim', $_POST);
 
-			addProduct($conn, $clean);
-		}
-	}	
-		
+			addProduct($conn, $clean, $destination);
 
+		}
+	}			
 
 	if(isset($_GET['success'])){
 			echo $_GET['success'];
 		}
 
-	
-			
 ?>
 
 <div class="wrapper">
