@@ -213,7 +213,7 @@
 
 	 			function addProduct($dbconn, $add, $dest){
 
-	 		$stmt = $dbconn->prepare("INSERT INTO books(title, author, category_name, price, publication_date, isbn, book_image)
+	 		$stmt = $dbconn->prepare("INSERT INTO books(title, author, category_id, price, publication_date, isbn, book_image)
 																	VALUES(:t, :a, :c, :p, :pd, :i, :d)");
 
 
@@ -260,14 +260,20 @@
 	 			$title   = $row['title'];
 	 			$author  = $row['author'];
 	 			$price   = $row['price'];
-	 			$cat     = $row['category_name'];
+	 			$cat     = $row['category_id'];
 	 			$date    = $row['publication_date'];
 	 			$image   = $row['book_image'];
 	 			$isbn    = $row['ISBN'];
 
+	 			$state = $dbconn->prepare("SELECT category_name FROM categories WHERE category_id = :ca");
+	 			$state->bindParam(':ca', $cat);
+	 			$state->execute();
+
+	 			$new = $state->fetch(PDO::FETCH_ASSOC); 
+
 	 			$result .= '<tr><td>'.$row['title'].'</td>';
 	 			$result .= '<td>'.$row['author'].'</td>';
-	 			$result .= '<td>'.$row['category_name'].'</td>';
+	 			$result .= '<td>'.$new['category_name'].'</td>';
 	 			$result .= '<td>'.$row['price'].'</td>';
 	 			$result .= '<td>'.$row['publication_date'].'</td>';
 	 			$result .= '<td>'.$row['ISBN'].'</td>';
@@ -282,14 +288,15 @@
 
 	 	function editProduct ($dbconn, $here){
 
-	 		$stmt = $dbconn->prepare("UPDATE books SET title = :ti, author = :au, category_name = :ca, price = :pr, publication_date = :pu, ISBN = :is WHERE book_id = :bi");
+	 		$stmt = $dbconn->prepare("UPDATE books SET title = :ti, author = :au, category_id = :ca, price = :pr,
+	 												 publication_date = :pu, ISBN = :is WHERE book_id = :bi");
 
 	 		$data = [ 
 	 					':ti' => $here['title'],
 	 					':au' => $here['author'],
 	 					':ca' => $here['category'],
 	 					':pr' => $here['price'],
-	 					':pu' => $here['publication_date'],
+	 					':pu' => $here['date'],
 	 					':is' => $here['isbn'],
 	 					':bi' => $here['id']
 	 					];
@@ -331,7 +338,7 @@
 	 			$cat_id = $row['category_id'];
 	 			$cat_name = $row['category_name'];
 
-	 			$result .= "<option value='$cat_name'>$cat_name</option>";
+	 			$result .= "<option value='$cat_id'>$cat_name</option>";
 	 		}
 	 		return $result;
 	 	}
