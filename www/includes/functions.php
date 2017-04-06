@@ -196,14 +196,14 @@
 	 		$strip = str_replace(" ", "_", $files[$name]['name']);
 
 	 		$filename = $rnd.$strip;
-	 		$destination = $add.$filename;
+	 		$destination = $add .$filename;
 
 	 		if(!move_uploaded_file($files[$name]['tmp_name'], $destination)){
 
 	 			/*$errors[] = "file upload failed";*/
 	 			$data[] = false;
 	 		} else {
-	 			$data[] = true;
+	 			$data[] = true;  
 	 			$data[] = $destination;
 	 		}	 		
 
@@ -211,12 +211,11 @@
 	 	}
 
 
-	 			function addProduct($dbconn, $add){
+	 			function addProduct($dbconn, $add, $dest){
 
-	 		$stmt = $dbconn->prepare("INSERT INTO books(title,author, category_id, price, publication_date, isbn, book_image)
+	 		$stmt = $dbconn->prepare("INSERT INTO books(title, author, category_name, price, publication_date, isbn, book_image)
 																	VALUES(:t, :a, :c, :p, :pd, :i, :d)");
 
-	 		$destination = 'uploads/'.$filename;
 
 	 		$data = [
 	 					':t' => $add['title'],
@@ -225,7 +224,7 @@
 	 					':p' => $add['price'],
 	 					':pd'=> $add['date'],
 	 					':i' => $add['isbn'], 
-	 					':d' => $destination
+	 					':d' => $dest
 	 					];
 
 	 		$stmt->execute($data);			
@@ -261,19 +260,20 @@
 	 			$title   = $row['title'];
 	 			$author  = $row['author'];
 	 			$price   = $row['price'];
-	 			$cat     = $row['category_id'];
+	 			$cat     = $row['category_name'];
 	 			$date    = $row['publication_date'];
+	 			$image   = $row['book_image'];
 	 			$isbn    = $row['ISBN'];
 
 	 			$result .= '<tr><td>'.$row['title'].'</td>';
 	 			$result .= '<td>'.$row['author'].'</td>';
-	 			$result .= '<td>'.$row['category_id'].'</td>';
+	 			$result .= '<td>'.$row['category_name'].'</td>';
 	 			$result .= '<td>'.$row['price'].'</td>';
 	 			$result .= '<td>'.$row['publication_date'].'</td>';
 	 			$result .= '<td>'.$row['ISBN'].'</td>';
 	 			$result .= '<td><img src="'.$row['book_image'].'"height="50" width="50" </td>';
 	 			$result .= "<td><a href='editprod.php?book_id=$book_id'>edit</a></td>";
-	 			$result .= "<td><a href=editprod.php?del=delete&book_id=$book_id>delete</a></td></tr>";
+	 			$result .= "<td><a href=viewprod.php?del=delete&book_id=$book_id>delete</a></td></tr>";
 	 		}
 
 	 		return $result;
@@ -282,11 +282,12 @@
 
 	 	function editProduct ($dbconn, $here){
 
-	 		$stmt = $dbconn->prepare("UPDATE books SET title = :ti, author = :au, price = :pr, publication_date = :pu, ISBN = :is WHERE book_id = :bi");
+	 		$stmt = $dbconn->prepare("UPDATE books SET title = :ti, author = :au, category_name = :ca, price = :pr, publication_date = :pu, ISBN = :is WHERE book_id = :bi");
 
 	 		$data = [ 
 	 					':ti' => $here['title'],
 	 					':au' => $here['author'],
+	 					':ca' => $here['category'],
 	 					':pr' => $here['price'],
 	 					':pu' => $here['publication_date'],
 	 					':is' => $here['isbn'],
@@ -330,7 +331,7 @@
 	 			$cat_id = $row['category_id'];
 	 			$cat_name = $row['category_name'];
 
-	 			$result .= "<option value='$cat_id'>$cat_name</option>";
+	 			$result .= "<option value='$cat_name'>$cat_name</option>";
 	 		}
 	 		return $result;
 	 	}
