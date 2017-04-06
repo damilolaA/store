@@ -23,14 +23,6 @@
 	}
 
 
-	if(array_key_exists('edit', $_POST)){
-
-		$clean = array_map('trim', $_POST);
-
-			editProduct($conn, $clean);
-
-		}
-
 			if(isset($_GET['success'])){
 
 				echo $_GET['success'];
