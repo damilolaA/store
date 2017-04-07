@@ -99,7 +99,7 @@
 				<br>
 				<br>
 
-		<div id="stream">
+	<!--	<div id="stream">
 			<table id="tab">
 				<thead>
 					<tr>
@@ -116,7 +116,7 @@
 							?>
           		</tbody>
 			</table>
-		</div>
+		</div>   -->
 
 		<div class="paginated">
 			<a href="category.php">1</a>
