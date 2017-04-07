@@ -1,65 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>View Category</title>
-	<link rel="stylesheet" type="text/css" href="styles/styles.css">
-</head>
+<?php
+	
+	session_start();
 
-<body>
-	<section>
-		<div class="mast">
-			<h1>T<span>SSB</span></h1>
-			<nav>
-				<ul class="clearfix">
-					<li><a href="category.php" class="selected">Add Category</a></li>
-					<li><a href="products.php">Add Products</a></li>
-					<li><a href="viewcat.php">View Products</a></li>
-					<li><a href="#">logout</a></li>
-				</ul>
-			</nav>
-		</div>
+	$page_title = "Category";
+
+	include 'includes/db.php';
+
+	include 'includes/functions.php';
+
+	include 'includes/header1.php';
+
+	authenticate();
+
+	$errors = [];
+
+	
+	if(array_key_exists('edit', $_POST)){
+		$clean = array_map('trim', $_POST);
+		editCategory($conn, $clean);
+	}
+
+	if(isset($_GET['success'])){
+		echo $_GET['success'];
+	}	
+
+?>
+	
+
 	</section>
-	<div class="wrapper">
+	<div class="wrapper">	
+	<h1 id="register-label">View Category</h1>
+				
+			</div>
+				</form>
+
+				<br>
+				<br>
+
 		<div id="stream">
-		<h1 id="register-label">Add Category</h1>
 			<table id="tab">
 				<thead>
 					<tr>
-						<th>title</th>
-						<th>author</th>
-						<th>category</th>
-						<th>price</th>
-						<th>publication date</th>
-						<th>isbn</th>
-						<th>image</th>
+						<th>category id</th>
+						<th>category name</th>
+						<th>edit</th>
+						<th>delete</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><a href="#">edit</a></td>
-						<td><a href="#">delete</a></td>
-					</tr>
+						<?php
+							$reveal = viewCategory($conn);
+							echo $reveal;
+							?>
           		</tbody>
 			</table>
 		</div>
 
 		<div class="paginated">
-			<a href="#">1</a>
-			<a href="#">2</a>
-			<span>3</span>
-			<a href="#">2</a>
+			<a href="category.php">1</a>
+			<a href="products.php">2</a>
+			<a href="viewprod.php">3</a>
 		</div>
 	</div>
 
-	<section class="foot">
-		<div>
-			<p>&copy; 2016;
-		</div>
-	</section>
-</body>
-</html>
+<?php
+
+include 'includes/footer.php';
+	
+?>
