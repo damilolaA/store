@@ -167,7 +167,7 @@
 		 	$stmt->execute();
 
 		 	$success = "Category successfully deleted";
-		 	header("Location:category.php?success=$success");
+		 	header("Location:viewcat.php?success=$success");
 		 }
 
 
@@ -176,7 +176,7 @@
 		 	$stmt = $dbconn->prepare("UPDATE categories SET category_name = :cn WHERE category_id = :ci");
 
 		 	$data = [
-		 				":cn" => $look['catname'],
+		 				":cn" => $look['cat'],
 		 				":ci" => $look['catid'],
 		 				];
 		 	$stmt->execute($data);
