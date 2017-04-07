@@ -8,6 +8,11 @@
 
 	include 'includes/header1.php';
 
+	if(isset($_GET['category_id'])){
+
+		$item = getcategorybyID($conn, $_GET['category_id']);
+	}
+
 	$errors = [];
 
 	if(array_key_exists('edit', $_POST)){
@@ -43,8 +48,8 @@
 					?>
 
 			<label>Category</label>
-				<input type="text" name="cat" placeholder="Category Name" value="<?php echo $_GET['category_name'];?>">
-						<input type="hidden" name="catid" value="<?php echo $_GET['category_id'];?>">
+				<input type="text" name="cat" placeholder="Category Name" value="<?php echo $item['category_name'];?>">
+						<input type="hidden" name="catid" value="<?php echo $item['category_id'];?>">
 						<input type="submit" name="edit">
 						
 					</form>
