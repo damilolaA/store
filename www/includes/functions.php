@@ -148,7 +148,7 @@
 
 		 		$result .= '<tr><td>'.$row['category_id'].'</td>';
 		 		$result .= '<td>'.$row['category_name'].'</td>';
-		 		$result .= "<td><a href='category.php?action=edit&category_id=$cat_id&category_name=$cat_name'>edit</a></td>";
+		 		$result .= "<td><a href='editcat.php?action=edit&category_id=$cat_id&category_name=$cat_name'>edit</a></td>";
 		 		$result .= "<td><a href='category.php?dele=delete&category_id=$cat_id'>delete</a></td></tr>";
 
 		 	}
@@ -182,7 +182,7 @@
 		 	$stmt->execute($data);
 
 		 		$success = "Category successfully deleted";
-		 		header("Location:category.php?success=$success");
+		 		header("Location:viewcat.php?success=$success");
 		 }
 
 
