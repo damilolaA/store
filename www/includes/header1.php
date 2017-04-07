@@ -11,6 +11,7 @@
 			<nav>
 				<ul class="clearfix">
 					<li><a href="category.php" class="selected">Add Category</a></li>
+					<li><a href="viewcat.php" class="selected">View Category</a></li>
 					<li><a href="products.php" class="selected">Add Products</a></li>
 					<li><a href="viewprod.php" class="selected">View Products</a></li>
 					<li><a href="logout.php" class="selected">Logout</a></li>
