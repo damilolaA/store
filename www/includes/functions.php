@@ -148,7 +148,7 @@
 
 		 		$result .= '<tr><td>'.$row['category_id'].'</td>';
 		 		$result .= '<td>'.$row['category_name'].'</td>';
-		 		$result .= "<td><a href='editcat.php?action=edit&category_id=$cat_id&category_name=$cat_name'>edit</a></td>";
+		 		$result .= "<td><a href='editcat.php?category_id=$cat_id'>edit</a></td>";
 		 		$result .= "<td><a href='category.php?dele=delete&category_id=$cat_id'>delete</a></td></tr>";
 
 		 	}
