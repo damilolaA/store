@@ -31,11 +31,6 @@
 	<div class="wrapper">	
 	<h1 id="register-label">View Category</h1>
 				
-			</div>
-				</form>
-
-				<br>
-				<br>
 
 		<div id="stream">
 			<table id="tab">
