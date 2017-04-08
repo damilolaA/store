@@ -33,7 +33,7 @@
       <?php 
            $show = viewtopselling($conn);
            echo $show;
-      ?>
+      ?>   
   <!--    <div class="display-book"></div>
       <div class="info">
         <h2 class="book-title">Eloquent Javascript</h2>
