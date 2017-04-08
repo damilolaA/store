@@ -1,5 +1,9 @@
 <?php
 
+    include 'includes/db.php';
+
+    include 'includes/functions.php';
+
     include 'includes/header2.php';
 
 ?>
@@ -26,11 +30,15 @@
   <!-- main content starts here -->
   <div class="main">
     <div class="book-display">
-      <div class="display-book"></div>
+      <?php 
+           $show = viewtopselling($conn);
+           echo $show;
+      ?>
+  <!--    <div class="display-book"></div>
       <div class="info">
         <h2 class="book-title">Eloquent Javascript</h2>
         <h3 class="book-author">by Marijn Haverbeke</h3>
-        <h3 class="book-price">$200</h3>
+        <h3 class="book-price">$200</h3>  -->
 
         <form>
           <label for="book-amout">Amount</label>
