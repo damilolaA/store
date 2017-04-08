@@ -10,6 +10,8 @@
 
 	include 'includes/header1.php';
 
+	$book = array("Top-Selling", "Trending");
+
 	authenticate();
 
 		$errors = [];
@@ -33,6 +35,10 @@
 
 		if(empty($_POST['price'])) {
 			$errors['price'] = "Please enter book price";
+		}
+
+		if(empty($_POST['type'])) {
+			$errors['type'] = "Please select book type";
 		}
 
 		if(empty($_POST['date'])) {
@@ -117,6 +123,20 @@
 				?>
 				<label>price:</label>
 				<input type="text" name="price" placeholder="price">
+			</div>
+
+			<div>
+				<?php
+					$review = displayErrors($errors, 'type');
+					echo $review;
+				?>
+				<label>Book Type:</label>	
+				<select name="type">
+					<option value="">Select</option>
+					<?php foreach($book as $books){?>
+					<option value="<?php echo $books;?>"><?php echo $books; ?></option>
+					<?php } ?>
+				</select>
 			</div>
 
 			<div>
