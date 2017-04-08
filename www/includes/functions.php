@@ -261,6 +261,7 @@
 	 			$title   = $row['title'];
 	 			$author  = $row['author'];
 	 			$price   = $row['price'];
+	 			$type    = $row['flag'];
 	 			$cat     = $row['category_id'];
 	 			$date    = $row['publication_date'];
 	 			$image   = $row['book_image'];
@@ -276,6 +277,7 @@
 	 			$result .= '<td>'.$row['author'].'</td>';
 	 			$result .= '<td>'.$new['category_name'].'</td>';
 	 			$result .= '<td>'.$row['price'].'</td>';
+	 			$result .= '<td>'.$row['flag'].'</td>';
 	 			$result .= '<td>'.$row['publication_date'].'</td>';
 	 			$result .= '<td>'.$row['ISBN'].'</td>';
 	 			$result .= '<td><img src="'.$row['book_image'].'"height="50" width="50" </td>';
