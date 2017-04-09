@@ -379,22 +379,16 @@
 
 	 	function viewtopselling($dbconn){
 
-	 		$result = "";
+	 		$result = "Top-Selling";
 
-	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag = 'top-selling");
+	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag = :f");
+	 		$stmt->bindParam(':f', $result);
 	 		$stmt->execute();
 
-	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-
-
-	 		$result =  '<div echo class="display-book" style="background: url(<img src="'.$row['book_image'].'")
-	 					background-size: contain;background-position: center;background-repeat: no-repeat;"</div>';
-	 		$result =  "<h2 echo class='book-title'>".$row['title']."</h2>";
-        	$result =  "<h3 echo class='book-author'>".$row['author']."</h3>";
-       		$result =  "<h3 echo class='book-price'>".$row['price']."</h3>";
-
-       		}
-       		return $result;
+	 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	 		
+       		
+       		return $row;
 	 	}
 ?>
 
