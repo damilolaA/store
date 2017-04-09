@@ -8,7 +8,10 @@
 
 
           $show = viewtopselling($conn);
-        
+
+          $reveal = viewtrending($conn);
+          
+          $open = viewtrending($conn);
 
   
 
@@ -34,7 +37,7 @@
     </div>
   </div>
   <!-- main content starts here -->
-  <div class="book-cover" style="background: url('img/4.jpg');background-size: contain;background-position: center;background-repeat: no-repeat;"></div></td>
+
   <div class="main">
     <div class="book-display">
       <div class="display-book" style="background: url('<?php echo $show['book_image'];?>');"></div>
@@ -54,12 +57,12 @@
       <h3 class="header">Trending</h3>
       <ul class="book-list">
         <li class="book">
-          <a href="#"><div class="book-cover"></div></a>
-          <div class="book-price"><p>$125</p></div>
+          <a href="#"><div class="book-cover" style="background: url('<?php echo $reveal['book_image'];?>');"></div></a>
+          <div class="book-price"><p><?php echo $reveal['price'];?></p></div>
         </li>
         <li class="book">
-          <a href="#"><div class="book-cover"></div></a>
-          <div class="book-price"><p>$90</p></div>
+          <a href="#"><div class="book-cover" style="background: url('<?php echo $reveal['book_image'];?>');"></div></a>
+          <div class="book-price"><p><?php echo $reveal['price']; ?></p></div>
         </li>
         <li class="book">
           <a href="#"><div class="book-cover"></div></a>
