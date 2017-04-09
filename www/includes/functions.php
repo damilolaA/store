@@ -390,6 +390,25 @@
        		
        		return $row;
 	 	}
+
+
+	 	function viewtrending($dbconn){
+
+	 		$result = "Trending";
+
+	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag = :fg");
+	 		$stmt->bindParam(':fg', $result);
+	 		$stmt->execute();
+
+	 		if($stmt->rowCount() > 0){
+	 			while($row = $stmt->fetch()){
+	 				var_dump($row); exit();
+	 			//	 $image = $row['book_image'];
+	 			//	 $price = $row['price'];
+	 			}
+	 		}	 		
+	 		
+	 	}
 ?>
 
 
