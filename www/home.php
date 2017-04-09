@@ -6,6 +6,12 @@
 
     include 'includes/header2.php';
 
+
+          $show = viewtopselling($conn);
+        
+
+  
+
 ?>
    <div class="top-bar">
     <div class="top-nav">
@@ -28,17 +34,14 @@
     </div>
   </div>
   <!-- main content starts here -->
+  <div class="book-cover" style="background: url('img/4.jpg');background-size: contain;background-position: center;background-repeat: no-repeat;"></div></td>
   <div class="main">
     <div class="book-display">
-      <?php 
-           $show = viewtopselling($conn);
-           echo $show;
-      ?>   
-  <!--    <div class="display-book"></div>
+      <div class="display-book" style="background: url('<?php echo $show['book_image'];?>');"></div>
       <div class="info">
-        <h2 class="book-title">Eloquent Javascript</h2>
-        <h3 class="book-author">by Marijn Haverbeke</h3>
-        <h3 class="book-price">$200</h3>  -->
+        <h2 class="book-title"><?php echo $show['title'];?></h2>
+        <h3 class="book-author"><?php echo $show['author']; ?></h3>
+        <h3 class="book-price"><?php echo $show['price'];?></h3> 
 
         <form>
           <label for="book-amout">Amount</label>
