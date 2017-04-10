@@ -7,13 +7,7 @@
     include 'includes/header2.php';
 
 
-          $show = viewtopselling($conn);
-
-          $reveal = viewtrending($conn);
-          
-        //  $open = viewtrending($conn);
-
-  
+         
 
 ?>
    <div class="top-bar">
@@ -40,12 +34,8 @@
 
   <div class="main">
     <div class="book-display">
-      <div class="display-book" style="background: url('<?php echo $show['book_image'];?>');"></div>
-      <div class="info">
-        <h2 class="book-title"><?php echo $show['title'];?></h2>
-        <h3 class="book-author"><?php echo $show['author']; ?></h3>
-        <h3 class="book-price"><?php echo $show['price'];?></h3> 
-
+      <?php   $show = viewtopselling($conn); echo $show; ?>
+  
         <form>
           <label for="book-amout">Amount</label>
           <input type="number" class="book-amount text-field">
@@ -56,22 +46,7 @@
     <div class="trending-books horizontal-book-list">
       <h3 class="header">Trending</h3>
       <ul class="book-list">
-        <li class="book">
-          <a href="#"><div class="book-cover" style="background: url('<?php echo $reveal['book_image'];?>');"></div></a>
-          <div class="book-price"><p><?php echo $reveal['price'];?></p></div>
-        </li>
-        <li class="book">
-          <a href="#"><div class="book-cover" style="background: url('<?php echo $reveal['book_image'];?>');"></div></a>
-          <div class="book-price"><p><?php echo $reveal['price'];?></p></div>
-        </li>
-        <li class="book">
-          <a href="#"><div class="book-cover"></div></a>
-          <div class="book-price"><p>$250</p></div>
-        </li>
-        <li class="book">
-          <a href="#"><div class="book-cover"></div></a>
-          <div class="book-price"><p>$50</p></div>
-        </li>
+        <?php $bring = viewtrending($conn); echo $bring;?>
       </ul>
     </div>
     <div class="recently-viewed-books horizontal-book-list">
