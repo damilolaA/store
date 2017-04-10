@@ -392,7 +392,7 @@
       			$result .=	 '<h2 class="book-title">'.$row['title'].'</h2>';
        			$result .=	 '<h3 class="book-author">'.$row['author'].'</h3>';
        			$result .=	 '<h3 class="book-price">'.$row['price'].'</h3>';
-       						 //'</div>';
+       			//$result .=	 '</div>';
 	 		}	
 	 		
        		
@@ -415,11 +415,29 @@
          				<a href="#"><div class="book-cover" style="background: url('.$row['book_image'].');"></div></a>
         				<div class="book-price"><p>'.$row['price'].'</p></div>
         				</li>'; 
+
+
 	 		}
 	 		return $result;
 			 	}
-						
 	 	
+	 	function recentlyviewed($dbconn){
+
+	 		$result = "";
+
+	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag IS NULL");
+	 		$stmt->execute();
+
+	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+	 			$result .=  '<li class="book">
+        				    <a href="#"><div class="book-cover" style="background: url('.$row['book_image'].');"></div></a>
+        				    <div class="book-price"><p>'.$row['price'].'</p></div>
+       						</li>';
+	 		}
+
+	 		return $result;
+	 	}
 ?>
 
 
