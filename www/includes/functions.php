@@ -438,6 +438,23 @@
 
 	 		return $result;
 	 	}
+
+	 	function useregister($dbconn, $check){
+
+	 		$hash = password_hash($check['pass'], PASSWORD_BCRYPT);
+
+	 		$stmt = $dbconn->prepare("INSERT INTO users(fname, lname, email, username, hash)
+	 									VALUES(:fn, :ln, :em, :un, :h) ");
+
+	 		$data = [
+	 				':fn' => $check['fname'],
+	 				':ln' => $check['lname'],
+	 				':em' => $check['email'],
+	 				':un' => $check['uname'],
+	 				':h'  => $hash
+	 				];
+	 		$stmt->execute($data);
+	 	}
 ?>
 
 
