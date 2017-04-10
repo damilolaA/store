@@ -385,29 +385,41 @@
 	 		$stmt->bindParam(':f', $result);
 	 		$stmt->execute();
 
-	 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+	 			$result .=   '<div class="display-book" style="background: url('.$row['book_image'].');"></div>';
+     						// '<div class="info">';
+      			$result .=	 '<h2 class="book-title">'.$row['title'].'</h2>';
+       			$result .=	 '<h3 class="book-author">'.$row['author'].'</h3>';
+       			$result .=	 '<h3 class="book-price">'.$row['price'].'</h3>';
+       						 //'</div>';
+	 		}	
 	 		
        		
-       		return $row;
+       		return $result;
 	 	}
 
 
 	 	function viewtrending($dbconn){
 
-	 		//$result = "Trending";
+	 		$result = "Trending";
 
-	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag = 'Trending'");
-	 		//$stmt->bindParam(':fg', $result);
+	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag = :fg");
+	 		$stmt->bindParam(':fg', $result);
 	 		$stmt->execute();
 
 	 		
 	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-	 			print_r($row); exit();
-
+	 			 		
+	 		$result .= '<li class="book">
+         				<a href="#"><div class="book-cover" style="background: url('.$row['book_image'].');"></div></a>
+        				<div class="book-price"><p>'.$row['price'].'</p></div>
+        				</li>'; 
 	 		}
-
-	 		return $row;
-	 	}
+	 		return $result;
+			 	}
+						
+	 	
 ?>
 
 
