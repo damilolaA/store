@@ -453,6 +453,7 @@
 	 				':un' => $check['uname'],
 	 				':h'  => $hash
 	 				];
+	 				
 	 		$stmt->execute($data);
 	 	}
 ?>
