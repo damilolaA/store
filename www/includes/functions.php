@@ -456,6 +456,19 @@
 	 				
 	 		$stmt->execute($data);
 	 	}
+
+
+	 	function showerrors($name, $flop){
+
+	 		$result = "";
+
+	 		if(isset($name[$flop])){
+
+	 		$result = '<p>'.$name[$flop].'</p>';
+		}
+			return $result;
+
+	 	}
 ?>
 
 
