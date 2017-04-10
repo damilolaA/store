@@ -11,7 +11,7 @@
 
           $reveal = viewtrending($conn);
           
-          $open = viewtrending($conn);
+        //  $open = viewtrending($conn);
 
   
 
@@ -62,7 +62,7 @@
         </li>
         <li class="book">
           <a href="#"><div class="book-cover" style="background: url('<?php echo $reveal['book_image'];?>');"></div></a>
-          <div class="book-price"><p><?php echo $reveal['price']; ?></p></div>
+          <div class="book-price"><p><?php echo $reveal['price'];?></p></div>
         </li>
         <li class="book">
           <a href="#"><div class="book-cover"></div></a>

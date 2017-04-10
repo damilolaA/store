@@ -394,20 +394,19 @@
 
 	 	function viewtrending($dbconn){
 
-	 		$result = "Trending";
+	 		//$result = "Trending";
 
-	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag = :fg");
-	 		$stmt->bindParam(':fg', $result);
+	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag = 'Trending'");
+	 		//$stmt->bindParam(':fg', $result);
 	 		$stmt->execute();
 
-	 		if($stmt->rowCount() > 0){
-	 			while($row = $stmt->fetch()){
-	 				var_dump($row); exit();
-	 			//	 $image = $row['book_image'];
-	 			//	 $price = $row['price'];
-	 			}
-	 		}	 		
 	 		
+	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+	 			print_r($row); exit();
+
+	 		}
+
+	 		return $row;
 	 	}
 ?>
 
