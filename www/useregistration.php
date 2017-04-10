@@ -1,6 +1,11 @@
 <?php
     
+    include 'includes/db.php';
+
+    include 'includes/functions.php';
+
     include 'includes/header2.php';
+
 
     if(array_key_exists('submit', $_POST)){
 
@@ -16,10 +21,6 @@
 
       if(empty($_POST['email'])){
         $errors[] = "Please enter email address";
-      }
-
-      if(doesEmailExists($conn, $_POST['email'])){
-        $errors[] = "Email already exists";
       }
 
       if(empty($_POST['uname'])){
