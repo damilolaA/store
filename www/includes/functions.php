@@ -469,6 +469,30 @@
 			return $result;
 
 	 	}
+
+
+	 	function userlogin($dbconn, $flex){
+
+	 			$result = [];
+
+	 		$stmt = $dbconn->prepare("SELECT * FROM users WHERE email = :e");
+
+	 		$stmt->bindParam(':e', $flex['email']);
+	 		$stmt->execute();
+
+	 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	 		$count = $row->rowCount();
+
+	 		if($count !==1 || !password_verify($flex['pass'], $row['hash'])){
+	 			$result[] = false;
+	 		}else {
+	 			$result[] = true;
+	 			$result[] = $row;
+	 		}
+
+	 		return $result;
+	 	}
 ?>
 
 
