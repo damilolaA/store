@@ -388,7 +388,7 @@
 	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 	 			$result .=   '<div class="display-book" style="background: url('.$row['book_image'].');"></div>';
-     						// '<div class="info">';
+     			$result	.=	 '<div class="info">';
       			$result .=	 '<h2 class="book-title">'.$row['title'].'</h2>';
        			$result .=	 '<h3 class="book-author">'.$row['author'].'</h3>';
        			$result .=	 '<h3 class="book-price">'.$row['price'].'</h3>';
@@ -423,9 +423,10 @@
 	 	
 	 	function recentlyviewed($dbconn){
 
-	 		$result = "";
+	 		$result = "Recently-Viewed";
 
-	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag IS NULL");
+	 		$stmt = $dbconn->prepare("SELECT * FROM books WHERE flag = :v");
+	 		$stmt->bindParam(':v', $result);
 	 		$stmt->execute();
 
 	 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -458,33 +459,34 @@
 	 	}
 
 
-	 	function showerrors($name, $flop){
+	 	function showerrors($check, $flop){
 
-	 		$result = "";
+	 		$work = "";
 
-	 		if(isset($name[$flop])){
+	 		if(isset($check[$flop])){
 
-	 		$result = '<p>'.$name[$flop].'</p>';
+	 		$work = '<span>'.$check[$flop].'</span>';
 		}
-			return $result;
+			return $work;
 
 	 	}
 
 
-	 	function userlogin($dbconn, $flex){
+	 	function userlogin($dbconn, $check){
 
-	 			$result = [];
+	 		$result = [];
 
 	 		$stmt = $dbconn->prepare("SELECT * FROM users WHERE email = :e");
 
-	 		$stmt->bindParam(':e', $flex['email']);
+	 		$stmt->bindParam(':e', $check['email']);
+
 	 		$stmt->execute();
 
 	 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 	 		$count = $row->rowCount();
 
-	 		if($count !==1 || !password_verify($flex['pass'], $row['hash'])){
+	 		if($count !==1 || !password_verify($check['pass'], $row['hash'])){
 	 			$result[] = false;
 	 		}else {
 	 			$result[] = true;
