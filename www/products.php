@@ -10,7 +10,7 @@
 
 	include 'includes/header1.php';
 
-	$book = array("Top-Selling", "Trending");
+	$book = array("Top-Selling", "Trending", 'Recently-Viewed');
 
 	authenticate();
 
